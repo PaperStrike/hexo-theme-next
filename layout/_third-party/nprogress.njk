@@ -1,4 +1,6 @@
 {%- if theme.nprogress.enable %}
+  {{ next_vendors('nprogress_css') }}
+  {{ next_vendors('nprogress_js') }}
   {{ next_data('nprogress', theme.nprogress) }}
   {{ next_js('third-party/nprogress.js') }}
 {%- endif %}

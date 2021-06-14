@@ -38,11 +38,6 @@
 
 {{ next_font() }}
 
-{%- if theme.nprogress.enable %}
-  {{ next_vendors('nprogress_css') }}
-  {{ next_vendors('nprogress_js') }}
-{%- endif %}
-
 {{ next_data('main', next_config()) }}
 {{- next_js('config.js') }}
 
