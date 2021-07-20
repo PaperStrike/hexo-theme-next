@@ -1,6 +1,6 @@
 /* global NexT, CONFIG, Pjax */
 
-const pjax = new Pjax({
+window.pjax = new Pjax({
   selectors: [
     'head title',
     'script[type="application/json"]',
@@ -9,13 +9,10 @@ const pjax = new Pjax({
     '.languages',
     '.pjax'
   ],
-  analytics: false,
-  cacheBust: false,
-  scrollTo : !CONFIG.bookmark.enable
+  scrollTo: !CONFIG.bookmark.enable
 });
 
 document.addEventListener('pjax:success', () => {
-  pjax.executeScripts(document.querySelectorAll('script[data-pjax]'));
   NexT.boot.refresh();
   // Define Motion Sequence & Bootstrap Motion.
   if (CONFIG.motion.enable) {
