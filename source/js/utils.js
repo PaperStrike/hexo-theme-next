@@ -192,11 +192,9 @@ NexT.utils = {
     }, { passive: true });
 
     backToTop && backToTop.addEventListener('click', () => {
-      window.anime({
-        targets  : document.scrollingElement,
-        duration : 500,
-        easing   : 'linear',
-        scrollTop: 0
+      document.scrollingElement.scrollTo({
+        top     : 0,
+        behavior: 'smooth'
       });
     });
   },
@@ -271,15 +269,11 @@ NexT.utils = {
       element.addEventListener('click', event => {
         event.preventDefault();
         const offset = target.getBoundingClientRect().top + window.scrollY;
-        window.anime({
-          targets  : document.scrollingElement,
-          duration : 500,
-          easing   : 'linear',
-          scrollTop: offset + 10,
-          complete : () => {
-            history.pushState(null, document.title, element.href);
-          }
+        document.scrollingElement.scrollTo({
+          top     : offset + 10,
+          behavior: 'smooth'
         });
+        history.pushState(null, document.title, element.href);
       });
       return target;
     });
@@ -308,11 +302,9 @@ NexT.utils = {
     }
     // Scrolling to center active TOC element if TOC content is taller then viewport.
     const tocElement = document.querySelector('.sidebar-panel-container');
-    window.anime({
-      targets  : tocElement,
-      duration : 200,
-      easing   : 'linear',
-      scrollTop: tocElement.scrollTop - (tocElement.offsetHeight / 2) + target.getBoundingClientRect().top - tocElement.getBoundingClientRect().top
+    tocElement.scrollTo({
+      top     : tocElement.scrollTop - (tocElement.offsetHeight / 2) + target.getBoundingClientRect().top - tocElement.getBoundingClientRect().top,
+      behavior: 'smooth'
     });
   },
 
