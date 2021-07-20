@@ -181,7 +181,7 @@ NexT.utils = {
       }
       if (!Array.isArray(NexT.utils.sections)) return;
       let index = NexT.utils.sections.findIndex(element => {
-        return element && element.getBoundingClientRect().top > 0;
+        return element && element.getBoundingClientRect().top > 10;
       });
       if (index === -1) {
         index = NexT.utils.sections.length - 1;
@@ -270,7 +270,7 @@ NexT.utils = {
         event.preventDefault();
         const offset = target.getBoundingClientRect().top + window.scrollY;
         document.scrollingElement.scrollTo({
-          top     : offset + 10,
+          top     : offset,
           behavior: 'smooth'
         });
         history.pushState(null, document.title, element.href);
