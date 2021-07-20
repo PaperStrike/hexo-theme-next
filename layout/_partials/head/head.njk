@@ -38,16 +38,6 @@
 
 {{ next_font() }}
 
-{{ next_vendors('fontawesome') }}
-
-{%- if theme.motion.enable %}
-  {{ next_vendors('animate_css') }}
-{%- endif %}
-
-{%- if theme.fancybox %}
-  {{ next_vendors('fancybox_css') }}
-{%- endif %}
-
 {%- if theme.nprogress.enable %}
   {{ next_vendors('nprogress_css') }}
   {{ next_vendors('nprogress_js') }}
@@ -55,3 +45,21 @@
 
 {{ next_data('main', next_config()) }}
 {{- next_js('config.js') }}
+
+{%- set async_styles = {
+  fontawesome: theme.vendors.fontawesome,
+  animate_css: theme.vendors.animate_css if theme.motion.enable,
+  fancybox_css: theme.vendors.fancybox_css if theme.fancybox
+} %}
+
+{{ next_data('asyncStyles', async_styles) }}
+{{- next_js('async-styles.js') }}
+
+<noscript>
+  {%- for name, vendor in async_styles %}
+    {%- if vendor %}
+      {{ next_vendors(name) }}
+    {%- endif %}
+  {%- endfor %}
+  <link rel="stylesheet" href="{{ url_for(theme.css) }}/noscript.css">
+</noscript>

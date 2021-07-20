@@ -6,9 +6,6 @@
   <title>{% block title %}{% endblock %}</title>
   {{ partial('_third-party/analytics/index.njk', {}, {cache: theme.cache.enable}) }}
   {{- next_inject('head') }}
-  <noscript>
-    <link rel="stylesheet" href="{{ url_for(theme.css) }}/noscript.css">
-  </noscript>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage"{% if theme.motion.enable %} class="use-motion"{% endif %}>
