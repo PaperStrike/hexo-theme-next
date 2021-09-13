@@ -329,6 +329,22 @@ NexT.utils = {
     }
   },
 
+  activateSidebarPanel: function(index) {
+    const activeClassNames = ['sidebar-toc-active', 'sidebar-overview-active'];
+    if (sidebar.classList.contains(activeClassName[index])) return;
+    const sidebar = document.querySelector('.sidebar-inner');
+    const panel = sidebar.querySelector('.sidebar-panel-container');
+    const nav = panel.firstElementChild.querySelector('.nav');
+    const navHeight = nav ? parseInt(nav.style.getPropertyValue('--height'), 10) : 0;
+    const panelHeights = [
+      navHeight || panel.firstElementChild.scrollHeight,
+      panel.lastElementChild.scrollHeight
+    ];
+    panel.style.setProperty('--inactive-panel-height', `${panelHeights[1 - index]}px`);
+    panel.style.setProperty('--active-panel-height', `${panelHeights[index]}px`);
+    sidebar.classList.replace(activeClassNames[1 - index], activeClassNames[index]);
+  },
+
   getScript: function(src, options = {}, legacyCondition) {
     if (typeof options === 'function') {
       return this.getScript(src, {

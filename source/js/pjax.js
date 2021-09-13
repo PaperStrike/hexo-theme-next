@@ -29,6 +29,6 @@ document.addEventListener('pjax:success', () => {
   const sidebarNav = document.querySelector('.sidebar-nav');
   sidebarNav.style.setProperty('--scroll-height', `${sidebarNav.scrollHeight}px`);
   document.querySelector('.sidebar-inner').classList.toggle('sidebar-nav-active', hasTOC);
-  document.querySelector(hasTOC ? '.sidebar-nav-toc' : '.sidebar-nav-overview').click();
+  NexT.utils.activateSidebarPanel(hasTOC ? 0 : 1);
   NexT.utils.updateSidebarPosition();
 });
